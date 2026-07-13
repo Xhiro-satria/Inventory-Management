@@ -56,7 +56,7 @@ function DashboardPage(){
             
             <div className="relative overflow-hidden rounded-3xl bg-white-950 text-white p-8 md:p-10 shadow-xl mb-8 border border-zinc-800">                
                 <div className="relative z-10 max-w-2xl space-y-2">
-                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-yellow-800 border border-zinc-700 text-[10px] font-mono uppercase text-black-400 tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-yellow-500 border text-[10px] font-mono uppercase text-black-400 tracking-wider">
                         <Layers size={12} /> Live Monitor
                     </div>
                     <h1 className="text-3xl text-black md:text-4xl font-black tracking-tight uppercase">
@@ -97,7 +97,7 @@ function DashboardPage(){
                         </div>
                         <div className="p-3 bg-zinc-800 rounded-xl text-zinc-400"><TrendingUp size={20} /></div>
                     </div>
-                    <div className="bg-white border border-zinc-200 rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div className="bg-white border border-black-200 rounded-2xl p-5 flex items-center justify-between shadow-sm">
                         <div>
                             <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">Stock In Today</p>
                             <p className="text-2xl font-bold mt-1 text-zinc-900 flex items-baseline gap-1">
@@ -107,7 +107,7 @@ function DashboardPage(){
                         </div>
                         <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl"><Package size={20} /></div>
                     </div>
-                    <div className="bg-white border border-zinc-200 rounded-2xl p-5 flex items-center justify-between shadow-sm">
+                    <div className="bg-white border border-black-200 rounded-2xl p-5 flex items-center justify-between shadow-sm">
                         <div>
                             <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">Stock Out Today</p>
                             <p className="text-2xl font-bold mt-1 text-zinc-900 flex items-baseline gap-1">
@@ -121,7 +121,7 @@ function DashboardPage(){
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                <div className="lg:col-span-2 bg-white rounded-3xl border border-zinc-200 shadow-sm p-6 md:p-8">
+                <div className="lg:col-span-2 bg-white rounded-3xl border border-zinc-200 shadow-sm p-6 md:p-8">
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-100">
                         <h2 className="text-lg font-bold tracking-tight uppercase text-zinc-900">
                             Incoming Catalog <span className="text-zinc-400 font-normal">/ Latest</span>

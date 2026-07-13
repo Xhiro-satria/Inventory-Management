@@ -169,9 +169,6 @@ import authService from "../../services/auth.service";
             <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-wide mb-6">
                 Join the platform
             </h1>
-            <p className="text-zinc-300 text-sm lg:text-base font-light leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            </p>
             </div>
         </div>
 

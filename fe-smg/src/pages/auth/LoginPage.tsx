@@ -48,10 +48,10 @@ function LoginPage() {
 
         <div className="relative z-10 max-w-xl">
           <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-wide mb-6">
-            Welcome to website
+            Welcome to <span className="text-yellow-400">Inventory.App</span>
           </h1>
           <p className="text-zinc-300 text-sm lg:text-base font-light leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            Sistem manajemen inventory terintegrasi
           </p>
         </div>
       </div>
@@ -105,19 +105,6 @@ function LoginPage() {
               {errors.password && (
                 <p className="text-red-500 text-xs pl-4 font-medium">{errors.password.message}</p>
               )}
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-zinc-400 px-2">
-              <label className="flex items-center gap-2 cursor-pointer select-none">
-                <input 
-                  type="checkbox" 
-                  className="rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900"
-                />
-                Remember
-              </label>
-              <Link to="#" className="hover:text-zinc-900 transition-colors">
-                Forgot password?
-              </Link>
             </div>
 
             <div className="pt-2 flex justify-center">

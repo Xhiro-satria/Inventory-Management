@@ -31,8 +31,17 @@ function InventoryPage() {
             );
         }
     };
+    
     if (loading) {
-        return <h1>Loading...</h1>;
+        return (
+            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#fafafa]">
+                <div className="relative w-16 h-16">
+                    <div className="absolute inset-0 border-4 border-zinc-200 rounded-full"></div>
+                    <div className="absolute inset-0 border-4 border-y-yellow-500 rounded-full animate-spin"></div>
+                </div>
+                <p className="mt-4 text-xs tracking-widest text-zinc-400 uppercase font-mono">Mengenkripsi Data...</p>
+            </div>
+        );
     }
 
     return (
@@ -47,7 +56,7 @@ function InventoryPage() {
                 setType("IN");
                 setOpen(true);
             }}
-            className="bg-green-600 text-white px-4 py-2 rounded"
+            className="bg-yellow-500 text-white px-4 py-2 rounded-lg"
         >
             + Stock In
         </button>
@@ -56,9 +65,9 @@ function InventoryPage() {
                 setType("OUT");
                 setOpen(true);
             }}
-            className="bg-red-600 text-white px-4 py-2 rounded"
+            className="bg-yellow-500 text-white px-4 py-2 rounded-lg"
         >
-            + Stock Out
+            - Stock Out
         </button>
     </div>
 </div>
@@ -178,7 +187,7 @@ function InventoryPage() {
 }
             <button
                 onClick={handleExport}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg ">
+                className="bg-yellow-500 text-white px-4 py-2 rounded-lg ">
                 Export Excel
             </button>
         </div>
