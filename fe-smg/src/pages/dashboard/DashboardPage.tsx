@@ -60,7 +60,7 @@ function DashboardPage(){
                         <Layers size={12} /> Live Monitor
                     </div>
                     <h1 className="text-3xl text-black md:text-4xl font-black tracking-tight uppercase">
-                        Inventory Core <span className="text-yellow-400 font-light">Panel</span>
+                        Inventory Core <span className="text-yellow-400  font-bold">Panel</span>
                     </h1>
                     <p className="text-xs md:text-sm text-black max-w-md font-light leading-relaxed">
                         Metrik operasional gudang terintegrasi. Total komoditas saat ini menyentuh angka <span className="text-black font-medium">{dashboard.summary.totalStock} unit</span>.
