@@ -1,18 +1,27 @@
 # 📦 Inventory Management System
 
-Sistem Inventory Management berbasis web yang dikembangkan menggunakan **React**, **Express.js**, **Prisma ORM**, dan **PostgreSQL**. Aplikasi ini membantu perusahaan atau toko dalam mengelola kategori, produk, stok barang, transaksi stok masuk/keluar, serta manajemen pengguna dengan sistem autentikasi dan otorisasi berbasis role.
+Aplikasi **Inventory Management System** berbasis web yang dikembangkan menggunakan **React**, **Express.js**, **Prisma ORM**, dan **PostgreSQL**. Sistem ini dirancang untuk membantu pengelolaan inventaris barang mulai dari kategori, produk, transaksi stok masuk dan keluar, hingga manajemen pengguna dengan autentikasi berbasis JWT.
+
+Proyek ini dibuat sebagai syarat tugas akhir kelas back-end code124 sekaligus implementasi konsep Full Stack Web Development menggunakan teknologi modern.
 
 ---
 
-# ✨ Fitur Utama
+# ✨ Features
 
 ## 🔐 Authentication
 
-* Login menggunakan JWT
-* Register akun baru
+* Login
+* Register
 * Logout
+* JWT Authentication
 * Protected Route
-* Role Based Access Control (Admin & Staff)
+* Role Based Authorization (Admin & Staff)
+
+---
+
+## 👤 Profile
+
+* Melihat profil pengguna
 
 ---
 
@@ -21,7 +30,7 @@ Sistem Inventory Management berbasis web yang dikembangkan menggunakan **React**
 * Menambahkan kategori
 * Mengubah kategori
 * Menghapus kategori
-* Melihat seluruh kategori
+* Melihat daftar kategori
 
 ---
 
@@ -29,14 +38,11 @@ Sistem Inventory Management berbasis web yang dikembangkan menggunakan **React**
 
 * Menambahkan produk
 * Upload gambar produk
-* Mengubah data produk
-* Menghapus produk
+* Edit produk
+* Hapus produk
 * Detail produk
-* Search produk berdasarkan:
-
-  * Nama
-  * SKU
-  * Kategori
+* Search produk
+* Filter berdasarkan kategori
 
 ---
 
@@ -44,35 +50,35 @@ Sistem Inventory Management berbasis web yang dikembangkan menggunakan **React**
 
 ### Stock In
 
-* Menambah stok barang
-* Menyimpan histori transaksi
+* Menambahkan stok barang
+* Mencatat histori transaksi
 
 ### Stock Out
 
 * Mengurangi stok barang
-* Validasi stok tidak boleh kurang dari jumlah yang diminta
+* Validasi stok agar tidak bernilai negatif
 
 ### Transaction History
 
-* Riwayat seluruh transaksi
+* Riwayat transaksi
 * Search transaksi
 
 ---
 
 ## 📄 Export
 
-* Export seluruh transaksi ke file Excel (.xlsx)
+* Export riwayat transaksi ke format **Excel (.xlsx)**
 
 ---
 
 ## 📈 Dashboard
 
-Menampilkan ringkasan data berupa:
+Dashboard menampilkan informasi:
 
 * Total Produk
 * Total Kategori
 * Total User
-* Total Stok
+* Total Stock
 * Total Transaksi
 * Stock In Hari Ini
 * Stock Out Hari Ini
@@ -81,7 +87,7 @@ Menampilkan ringkasan data berupa:
 
 ---
 
-# 🛠️ Tech Stack
+# 🛠 Tech Stack
 
 ## Frontend
 
@@ -102,7 +108,7 @@ Menampilkan ringkasan data berupa:
 * Express.js
 * TypeScript
 * Prisma ORM
-* JWT Authentication
+* JWT
 * Bcrypt
 * Multer
 * Zod Validation
@@ -116,13 +122,16 @@ Menampilkan ringkasan data berupa:
 
 ---
 
-# 📁 Struktur Project
+# 📁 Project Structure
 
 ```text
-Inventory-Management-System
+inventory-management-system
 │
 ├── backend
 │   ├── prisma
+│   │   ├── migrations
+│   │   └── schema.prisma
+│   │
 │   ├── src
 │   │   ├── controllers
 │   │   ├── middlewares
@@ -130,81 +139,145 @@ Inventory-Management-System
 │   │   ├── services
 │   │   ├── validators
 │   │   ├── lib
+│   │   ├── app.ts
 │   │   └── server.ts
-│   └── package.json
+│   │
+│   ├── uploads
+│   ├── package.json
+│   └── .env
 │
 ├── frontend
 │   ├── src
 │   │   ├── components
 │   │   ├── pages
-│   │   ├── services
 │   │   ├── router
+│   │   ├── services
+│   │   ├── types
 │   │   ├── validations
-│   │   └── types
-│   └── package.json
+│   │   └── lib
+│   │
+│   ├── package.json
+│   └── .env
 │
 └── README.md
 ```
 
 ---
 
-# 🔑 Role User
+# 🔑 User Role
 
-## Admin
+## 👨‍💼 ADMIN
 
-Memiliki akses penuh terhadap sistem.
+Admin memiliki akses penuh terhadap sistem.
 
-Hak akses:
+Fitur yang dapat diakses:
 
 * Dashboard
 * User Management
 * Category Management
 * Product Management
-* Inventory
+* Inventory Management
 * Transaction History
+* Export Excel
+* Profile
 
 ---
 
-## Staff
+## 👨‍🔧 STAFF
 
-Hak akses terbatas.
+Staff memiliki akses terbatas.
 
-Dapat:
+Fitur yang dapat diakses:
 
-* Login
-* Melihat Dashboard
-* Melakukan Stock In
-* Melakukan Stock Out
-* Melihat Riwayat Transaksi
-* Melihat dan mengubah profil sendiri
+* Dashboard
+* Inventory Management
+* Transaction History
+* Profile
 
 ---
 
-# 🚀 Cara Instalasi
+# ⚠ Default User Role
+
+Semua akun yang melakukan **Register** akan otomatis memiliki role:
+
+```text
+STAFF
+```
+
+Untuk mendapatkan akses sebagai **ADMIN**, role harus diubah secara manual menggunakan **Prisma Studio**.
+
+Jalankan:
+
+```bash
+npx prisma studio
+```
+
+Kemudian buka:
+
+```text
+http://localhost:5555
+```
+
+Masuk ke tabel **User** lalu ubah kolom:
+
+```text
+role
+```
+
+dari
+
+```text
+STAFF
+```
+
+menjadi
+
+```text
+ADMIN
+```
+
+Simpan perubahan, kemudian login kembali menggunakan akun tersebut.
+
+> Hal ini dilakukan agar pengguna baru tidak dapat langsung memperoleh hak akses Administrator.
+
+---
+
+# ⚙ Requirements
+
+Pastikan telah menginstal:
+
+* Node.js 20+
+* PostgreSQL
+* Git
+* npm
+
+---
+
+# 🚀 Installation
 
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/username/inventory-management-system.git
+git clone https://github.com/your-username/your-repository.git
 ```
 
-Masuk ke folder project.
+Masuk ke folder project
 
 ```bash
-cd inventory-management-system
+cd your-repository
 ```
 
 ---
 
-## 2. Install Backend
+# 📦 Backend Installation
 
-Masuk ke folder backend.
+Masuk ke folder backend
 
 ```bash
 cd backend
 ```
 
-Install dependency.
+Install dependency
 
 ```bash
 npm install
@@ -212,20 +285,25 @@ npm install
 
 ---
 
-## 3. Install Frontend
+# 🎨 Frontend Installation
 
-Buka terminal baru.
+Buka terminal baru
 
 ```bash
 cd frontend
+```
+
+Install dependency
+
+```bash
 npm install
 ```
 
 ---
 
-# 🗄️ Konfigurasi Database
+# 🗄 Database
 
-Buat database MySQL.
+Buat database PostgreSQL
 
 ```sql
 CREATE DATABASE inventory_db;
@@ -233,67 +311,41 @@ CREATE DATABASE inventory_db;
 
 ---
 
-# 🔧 Konfigurasi Environment Backend
+# 🔧 Backend Environment
 
-Buat file `.env` pada folder backend.
+Buat file
+
+```text
+backend/.env
+```
+
+Isi dengan konfigurasi berikut:
 
 ```env
-DATABASE_URL="mysql://root:password@localhost:3306/inventory_db"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/inventory_db"
 
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=your_secret_key
 
 PORT=3000
 ```
 
-Ganti:
+Sesuaikan:
 
-* `root`
-* `password`
-* `inventory_db`
-
-sesuai konfigurasi MySQL milik Anda.
+* username PostgreSQL
+* password
+* nama database
 
 ---
 
-# 🧬 Jalankan Prisma
+# 🎨 Frontend Environment
 
-Generate Prisma Client.
-
-```bash
-npx prisma generate
-```
-
-Migrasi database.
-
-```bash
-npx prisma migrate dev
-```
-
-Jika database sudah memiliki migration sebelumnya, gunakan:
-
-```bash
-npx prisma migrate deploy
-```
-
----
-
-# ▶️ Menjalankan Backend
-
-```bash
-npm run dev
-```
-
-Server berjalan di:
+Buat file
 
 ```text
-http://localhost:3000
+frontend/.env
 ```
 
----
-
-# 🎨 Konfigurasi Frontend
-
-Buat file `.env` pada folder frontend.
+Isi:
 
 ```env
 VITE_API_URL=http://localhost:3000/api
@@ -301,13 +353,49 @@ VITE_API_URL=http://localhost:3000/api
 
 ---
 
-# ▶️ Menjalankan Frontend
+# 🧬 Prisma
+
+Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+Jalankan migration
+
+```bash
+npx prisma migrate dev
+```
+
+Apabila migration sudah tersedia:
+
+```bash
+npx prisma migrate deploy
+```
+
+---
+
+# ▶ Running Backend
 
 ```bash
 npm run dev
 ```
 
-Frontend berjalan di:
+Backend berjalan pada:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# ▶ Running Frontend
+
+```bash
+npm run dev
+```
+
+Frontend berjalan pada:
 
 ```text
 http://localhost:5173
@@ -315,9 +403,19 @@ http://localhost:5173
 
 ---
 
-# 📸 Upload Gambar
+# 🔐 Login
 
-Seluruh gambar produk akan disimpan pada folder:
+Lakukan registrasi melalui halaman Register.
+
+Kemudian login menggunakan akun yang telah dibuat.
+
+Apabila ingin mengakses seluruh fitur administrasi, ubah role menjadi **ADMIN** menggunakan Prisma Studio.
+
+---
+
+# 📁 Upload Directory
+
+Semua gambar produk akan disimpan pada folder:
 
 ```text
 backend/uploads
@@ -327,21 +425,7 @@ Pastikan folder tersebut memiliki izin tulis.
 
 ---
 
-# 🔐 Authentication
-
-Backend menggunakan JSON Web Token (JWT).
-
-Token akan dikirim setelah login berhasil dan harus disertakan pada setiap request yang membutuhkan autentikasi.
-
-Contoh Header:
-
-```http
-Authorization: Bearer YOUR_TOKEN
-```
-
----
-
-# 📦 API Endpoint
+# 📚 API Endpoints
 
 ## Authentication
 
@@ -349,6 +433,17 @@ Authorization: Bearer YOUR_TOKEN
 | ------ | ------------------ |
 | POST   | /api/auth/register |
 | POST   | /api/auth/login    |
+
+---
+
+## User
+
+| Method | Endpoint            |
+| ------ | ------------------- |
+| GET    | /api/users          |
+| PATCH  | /api/users/:id/role |
+| GET    | /api/users/profile  |
+| PUT    | /api/users/profile  |
 
 ---
 
@@ -385,38 +480,50 @@ Authorization: Bearer YOUR_TOKEN
 
 ---
 
-## User
-
-| Method | Endpoint            |
-| ------ | ------------------- |
-| GET    | /api/users          |
-| PATCH  | /api/users/:id/role |
-| GET    | /api/users/profile  |
-| PUT    | /api/users/profile  |
-
----
-
-# 📷 Tampilan Aplikasi
-
-Disarankan menambahkan screenshot berikut:
+# 📸 Application Preview
 
 * Login
-* Register
+<img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/5f037ff2-f28b-4ad1-a274-161e981fd96f" />
+
 * Dashboard
-* Product
+<img width="1916" height="870" alt="image" src="https://github.com/user-attachments/assets/73075640-e38c-43bd-905e-b35870956536" />
+
 * Category
+<img width="1919" height="864" alt="image" src="https://github.com/user-attachments/assets/6e76e650-c712-4545-a2b5-6d2d792aa993" />
+
+* Product
+  <img width="1919" height="864" alt="image" src="https://github.com/user-attachments/assets/8ce8be79-3527-4008-91c8-b5907554d195" />
+
 * Inventory
-* User
+  <img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/4dfbccb5-e3ee-48ab-82a3-dbd2f685bfbd" />
+  
 * Profile
+<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/5df8e459-4d8f-4473-b526-e8b814c86cb4" />
 
 ---
 
-# 👨‍💻 Developer
+# 🚀 Future Improvements
 
-Dikembangkan oleh **Satria** sebagai proyek pembelajaran dan portofolio dalam pengembangan aplikasi web Full Stack menggunakan React, Express, Prisma, dan MySQL.
+Beberapa pengembangan yang dapat ditambahkan:
+
+* Dashboard Chart
+* Pagination
+* Export PDF
+* Email Notification
+* Docker Support
+* Unit Testing
+* Dark Mode
+
+---
+
+# 👨‍💻 Author
+
+**Satria**
+
+kalo ada yg ingin ditanyakan langsung pc aja eaaa
 
 ---
 
 # 📄 License
 
-Project ini dibuat untuk tujuan pembelajaran dan pengembangan portofolio. Silakan digunakan, dimodifikasi, dan dikembangkan lebih lanjut dengan tetap mencantumkan atribusi kepada pengembang asli apabila dipublikasikan kembali.
+Project ini dibuat untuk keperluan pembelajaran dan portofolio. Silakan digunakan, dimodifikasi, dan dikembangkan lebih lanjut dengan tetap memberikan atribusi kepada pengembang apabila dipublikasikan kembali.
